@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WFInfo"
         mc:Ignorable="d"
-        Title="inventory" Height="400" Width="350" WindowStyle="None" AllowsTransparency="True" ResizeMode="CanResizeWithGrip" MaxWidth="350" MinWidth="350" MinHeight="200" Loaded="WindowLoaded">
+        Title="inventory" Height="200" Width="350" WindowStyle="None" AllowsTransparency="True" ResizeMode="CanResizeWithGrip" MaxWidth="350" MinWidth="350" MinHeight="150" Loaded="WindowLoaded">
     <Grid Background="#FF1B1B1B" MouseDown="MouseDown">
         <Rectangle Stroke="#FF707070"/>
         <Grid x:Name="Header" Height="25" VerticalAlignment="Top">
@@ -18,54 +18,52 @@
 
         <Grid Margin="1,24,1,0" Height="18" VerticalAlignment="Top">
             <Rectangle Fill="#FF0F0F0F" Stroke="#FF646464" Margin="-1" />
-            <CheckBox x:Name="vaulted" Content="Hide Vaulted" ToolTip="Show vaulted items." VerticalContentAlignment="Center" Click="VaultedClick" IsChecked="True" Margin="43,0,0,1" VerticalAlignment="Center" HorizontalAlignment="Left" Height="17"/>
-            <TextBox x:Name="textBox" Margin="175,0,0,0" VerticalContentAlignment="Center" Padding="0" Text="Filter Terms" Foreground="#FF646464" TextChanged="TextboxTextChanged" SelectionBrush="#FF7EB4EA" GotFocus="TextBoxFocus" LostFocus="TextBoxLostFocus" BorderBrush="#FF303030" BorderThickness="1,0,0,0"/>
-            <Rectangle Stroke="#FF646464" Margin="136,-1,-1,-1"/>
-            <Label Content="Filter:" HorizontalAlignment="Left" Margin="140,0,0,0" Padding="0" VerticalContentAlignment="Center" />
-            <Label MouseLeftButtonDown="CollapseAll" Content="－" FontSize="15" ToolTip="Collapse All Levels" Padding="0" Margin="19,-1,0,0" Style="{StaticResource Label_Button}" Height="19" VerticalAlignment="Top" HorizontalAlignment="Left" Width="21"/>
-            <Label MouseLeftButtonDown="ExpandAll" Content="＋" FontSize="15" ToolTip="Expand All Levels" Padding="0" Margin="-1,-1,0,0" Style="{StaticResource Label_Button}" Height="19" VerticalAlignment="Top" HorizontalAlignment="Left" Width="21"/>
-
-        </Grid>
-        <Grid Margin="1,42,1,0" Height="18" VerticalAlignment="Top">
-            <Rectangle Fill="#FF0F0F0F" Stroke="#FF646464" Margin="-1" Grid.RowSpan="2" />
-            <Border x:Name="ComboBorder" Margin="47,-1,-1,-1">
-                <Border.Style>
-                    <Style>
-                        <Setter Property="Border.BorderBrush" Value="#FF646464"/>
-                        <Setter Property="Border.BorderThickness" Value="0,1,1,1"/>
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding IsMouseOver, ElementName=ComboBorder}" Value="true">
-                                <Setter Property="Border.BorderThickness" Value="1"/>
-                                <Setter Property="Border.BorderBrush" Value="#FF7EB4EA"/>
-                                <Setter Property="Panel.ZIndex" Value="1000"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Border.Style>
-                <Border>
+            <CheckBox x:Name="vaulted" Content="Hide Vaulted" ToolTip="Show vaulted items." VerticalContentAlignment="Center" Click="VaultedClick" IsChecked="True" VerticalAlignment="Center" HorizontalAlignment="Left" Height="18"/>
+            <Grid Margin="91,0,139,0" Height="18" VerticalAlignment="Top">
+                <Rectangle Fill="#FF0F0F0F" Stroke="#FF646464" Margin="-1" Grid.RowSpan="2" />
+                <Border x:Name="ComboBorder" Margin="47,-1,0,-1" HorizontalAlignment="Left" Width="72">
                     <Border.Style>
                         <Style>
-                            <Setter Property="Border.BorderBrush" Value="#FF303030"/>
-                            <Setter Property="Border.BorderThickness" Value="1,0,0,0"/>
+                            <Setter Property="Border.BorderBrush" Value="#FF646464"/>
+                            <Setter Property="Border.BorderThickness" Value="0,1,1,1"/>
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding IsMouseOver, ElementName=ComboBorder}" Value="true">
-                                    <Setter Property="Border.BorderThickness" Value="0"/>
+                                    <Setter Property="Border.BorderThickness" Value="1"/>
+                                    <Setter Property="Border.BorderBrush" Value="#FF7EB4EA"/>
+                                    <Setter Property="Panel.ZIndex" Value="1000"/>
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
                     </Border.Style>
-                    <ComboBox x:Name="SortBox" Background="#FF0F0F0F" Foreground="#FFAFD0D9" SelectionChanged="SortBoxChanged" Style="{DynamicResource ComboBoxStyle1}" ItemContainerStyle="{DynamicResource ComboBoxItemStyle1}" BorderThickness="0">
-                        <ComboBoxItem IsSelected="True" Content="Name"/>
-                        <ComboBoxItem Content="Cost"/>
-                        <ComboBoxItem Content="Unowned"/>
-                        <ComboBoxItem Content="Set cost"/>
-                    </ComboBox>
+                    <Border>
+                        <Border.Style>
+                            <Style>
+                                <Setter Property="Border.BorderBrush" Value="#FF303030"/>
+                                <Setter Property="Border.BorderThickness" Value="1,0,0,0"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsMouseOver, ElementName=ComboBorder}" Value="true">
+                                        <Setter Property="Border.BorderThickness" Value="0"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+                        <ComboBox x:Name="SortBox" Background="#FF0F0F0F" Foreground="#FFAFD0D9" SelectionChanged="SortBoxChanged" Style="{DynamicResource ComboBoxStyle1}" ItemContainerStyle="{DynamicResource ComboBoxItemStyle1}" BorderThickness="0">
+                            <ComboBoxItem IsSelected="True" Content="Name"/>
+                            <ComboBoxItem Content="Plat"/>
+                            <ComboBoxItem Content="Ducats"/>
+                            <ComboBoxItem Content="Ducats/Plat"/>
+                        </ComboBox>
+                    </Border>
                 </Border>
-            </Border>
-            <Label Content="Sort by:" Margin="2,0,0,0" Padding="0" VerticalContentAlignment="Center" FontSize="12" Background="{x:Null}" HorizontalAlignment="Left"/>
+                <Label Content="Sort by:" Margin="2,0,0,0" Padding="0" VerticalContentAlignment="Center" FontSize="12" Background="{x:Null}" HorizontalAlignment="Left"/>
+
+            </Grid>
+            <TextBox x:Name="textBox" Margin="242,0,0,0" VerticalContentAlignment="Center" Padding="0" Text="Filter Terms" Foreground="#FF646464" TextChanged="TextboxTextChanged" SelectionBrush="#FF7EB4EA" GotFocus="TextBoxFocus" LostFocus="TextBoxLostFocus" BorderBrush="#FF303030" BorderThickness="1,0,0,0"/>
+            <Rectangle Stroke="#FF646464" Margin="209,-1,-1,-1"/>
+            <Label Content="Filter:" HorizontalAlignment="Left" Margin="211,0,0,0" Padding="0" VerticalContentAlignment="Center" />
 
         </Grid>
-        <Grid x:Name="ListGrid" Margin="1,61,1,1">
+        <Grid x:Name="ListGrid" Margin="1,43,1,1">
             <TreeView x:Name="InventoryTree" Background="{x:Null}" BorderBrush="{x:Null}" TreeViewItem.Selected="SingleClickExpand" VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling">
                 <TreeView.Resources>
                     <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="Transparent"/>
