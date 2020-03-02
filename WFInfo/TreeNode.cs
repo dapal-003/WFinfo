@@ -39,7 +39,7 @@ namespace WFInfo
         }
     }
 
-    public class SimpleCommand : System.Windows.Input.ICommand
+    public class SimpleCommand : ICommand
     {
         public SimpleCommand(Action action)
         {

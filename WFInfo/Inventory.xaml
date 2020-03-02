@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WFInfo"
         mc:Ignorable="d"
-        Title="inventory" Height="400" Width="350" WindowStyle="None" AllowsTransparency="True" ResizeMode="CanResizeWithGrip" MaxWidth="450" MinWidth="350" MinHeight="200" Loaded="WindowLoaded">
+        Title="inventory" Height="400" Width="350" WindowStyle="None" AllowsTransparency="True" ResizeMode="CanResizeWithGrip" MaxWidth="350" MinWidth="350" MinHeight="200" Loaded="WindowLoaded">
     <Grid Background="#FF1B1B1B" MouseDown="MouseDown">
         <Rectangle Stroke="#FF707070"/>
         <Grid x:Name="Header" Height="25" VerticalAlignment="Top">
@@ -22,8 +22,8 @@
             <TextBox x:Name="textBox" Margin="175,0,0,0" VerticalContentAlignment="Center" Padding="0" Text="Filter Terms" Foreground="#FF646464" TextChanged="TextboxTextChanged" SelectionBrush="#FF7EB4EA" GotFocus="TextBoxFocus" LostFocus="TextBoxLostFocus" BorderBrush="#FF303030" BorderThickness="1,0,0,0"/>
             <Rectangle Stroke="#FF646464" Margin="136,-1,-1,-1"/>
             <Label Content="Filter:" HorizontalAlignment="Left" Margin="140,0,0,0" Padding="0" VerticalContentAlignment="Center" />
-            <Label MouseLeftButtonDown="CollapseAll" Content="－" FontSize="15" ToolTip="Collapse All Levels" Padding="0" Margin="19,-1,308,0" Style="{StaticResource Label_Button}" Height="19" VerticalAlignment="Top"/>
-            <Label MouseLeftButtonDown="ExpandAll" Content="＋" FontSize="15" ToolTip="Expand All Levels" Padding="0" Margin="-1,-1,328,0" Style="{StaticResource Label_Button}" Height="19" VerticalAlignment="Top"/>
+            <Label MouseLeftButtonDown="CollapseAll" Content="－" FontSize="15" ToolTip="Collapse All Levels" Padding="0" Margin="19,-1,0,0" Style="{StaticResource Label_Button}" Height="19" VerticalAlignment="Top" HorizontalAlignment="Left" Width="21"/>
+            <Label MouseLeftButtonDown="ExpandAll" Content="＋" FontSize="15" ToolTip="Expand All Levels" Padding="0" Margin="-1,-1,0,0" Style="{StaticResource Label_Button}" Height="19" VerticalAlignment="Top" HorizontalAlignment="Left" Width="21"/>
 
         </Grid>
         <Grid Margin="1,42,1,0" Height="18" VerticalAlignment="Top">
