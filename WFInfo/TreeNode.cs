@@ -190,6 +190,16 @@ namespace WFInfo
             return Vaulted.Length == 0;
         }
 
+        private string _mastered;
+        public string Mastered {
+            get { return _mastered; }
+            set { SetField(ref _mastered, value); }
+        }
+
+        public bool IsMastered() {
+            return Mastered.Length == 0;
+        }
+
         public void SetSilent()
         {
             Grid_Shown = "Visible";
