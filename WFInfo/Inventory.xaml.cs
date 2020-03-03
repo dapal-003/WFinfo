@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -15,7 +17,30 @@ namespace WFInfo {
         public static string[] searchText;
 
         private void WindowLoaded(object sender, RoutedEventArgs e) { // triggers when the window is first loaded, populates all the listviews once.
-
+            InventoryNodes = new List<TreeNode>();
+            foreach (KeyValuePair<string, JToken> prime in Main.dataBase.equipmentData) {
+                if (prime.Key.Contains("Prime")) {
+                    foreach (KeyValuePair<string, JToken> primePart in prime.Value["parts"].ToObject<JObject>()) {
+                        TreeNode partNode = new TreeNode(primePart.Key, primePart.Value["vaulted"].ToObject<bool>() ? "Vaulted" : "");
+                        if (Main.dataBase.marketData.TryGetValue(primePart.Key.ToString(), out JToken marketValues)) {
+                            partNode.SetPrimePart(marketValues["plat"].ToObject<double>(), marketValues["ducats"].ToObject<int>(), primePart.Value["owned"].ToObject<int>(), primePart.Value["count"].ToObject<int>());
+                            Console.WriteLine(partNode.ToString());
+                        }
+                        else if (Main.dataBase.equipmentData.TryGetValue(primePart.Key, out JToken job)) {
+                            double plat = 0.0;
+                            foreach (KeyValuePair<string, JToken> subPartPart in job["parts"].ToObject<JObject>()) {
+                                if (Main.dataBase.marketData.TryGetValue(subPartPart.Key.ToString(), out JToken subMarketValues)) {
+                                    int temp = subPartPart.Value["count"].ToObject<int>();
+                                    plat += temp * subMarketValues["plat"].ToObject<double>();
+                                }
+                            }
+                            partNode.Name += " set";
+                            partNode.SetPrimeEqmt(plat, primePart.Value["owned"].ToObject<int>(), primePart.Value["count"].ToObject<int>());
+                        }
+                        InventoryTree.Items.Add(partNode);
+                    }
+                }
+            }
         }
 
         private void VaultedClick(object sender, RoutedEventArgs e) {

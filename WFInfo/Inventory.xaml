@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WFInfo"
         mc:Ignorable="d"
-        Title="inventory" Height="200" Width="350" WindowStyle="None" AllowsTransparency="True" ResizeMode="CanResizeWithGrip" MaxWidth="350" MinWidth="350" MinHeight="150" Loaded="WindowLoaded">
+        Title="inventory" Height="200" Width="550" WindowStyle="None" AllowsTransparency="True" ResizeMode="CanResizeWithGrip" MaxWidth="1000" MinWidth="350" MinHeight="150" Loaded="WindowLoaded">
     <Grid Background="#FF1B1B1B" MouseDown="MouseDown">
         <Rectangle Stroke="#FF707070"/>
         <Grid x:Name="Header" Height="25" VerticalAlignment="Top">
@@ -64,7 +64,7 @@
 
         </Grid>
         <Grid x:Name="ListGrid" Margin="1,43,1,1">
-            <TreeView x:Name="InventoryTree" Background="{x:Null}" BorderBrush="{x:Null}" TreeViewItem.Selected="SingleClickExpand" VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling">
+            <TreeView x:Name="InventoryTree" Background="{x:Null}" BorderBrush="{x:Null}" VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling">
                 <TreeView.Resources>
                     <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="Transparent"/>
                     <Style TargetType="{x:Type TreeViewItem}" BasedOn="{StaticResource WFInfo_TreeViewItem}">
